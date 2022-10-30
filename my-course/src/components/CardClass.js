@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-
-// function navigateToDetailCourse(course, user){
-//     console.log(course)
-//     console.log(user)
-// }
-
 class CardClass extends Component {
     constructor(props) {
         super(props);
@@ -14,8 +8,7 @@ class CardClass extends Component {
 
     
     componentDidMount() {
-        // console.log(this.props);
-        // console.log()
+
     }
 
     componentWillUnmount() {
@@ -32,7 +25,6 @@ class CardClass extends Component {
             }, nav } = this.props;
 
         const user_id = JSON.parse(localStorage.getItem('data_user_login')).user_id;
-        // console.log(typeof nav);
         return (
         <div className='card-inside'>
             <div className="top-section">
