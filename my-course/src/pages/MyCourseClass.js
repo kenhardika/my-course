@@ -9,6 +9,7 @@ class MyCourseClass extends Component {
         this.state = {dataCourse:[]};
         this.navigateToDetailCourse = this.navigateToDetailCourse.bind(this);
         this.fetchCourseCard = this.fetchCourseCard.bind(this);
+        this.changeState = this.changeState.bind(this);
     }
 
     changeState(data){
@@ -37,23 +38,18 @@ class MyCourseClass extends Component {
         }
 
         catch{
-            console.log('loading fetch api...')
+            throw Error('Error API not loaded');
         }
     
     }
 
 
     componentDidMount() {
-        const {match:{params:{id}}} = this.props
-  
-        this.fetchCourseCard(id)
-
-   
+        const {match:{params:{id}}} = this.props;
+        this.fetchCourseCard(id);
         const localStore = JSON.parse(localStorage.getItem('data_user_login'));
         localStore.user_id = this.props.match.params.id;
         localStorage.setItem("data_user_login", JSON.stringify(localStore));
-        
-        
     }
 
     componentWillUnmount() {

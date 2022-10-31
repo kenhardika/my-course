@@ -9,8 +9,6 @@ async function fetchCourses(user_id){
             credentials: 'include',
         });
         const responseCourses = await getCourse.json();
-        // if(!responseCourses.data.length) return;
-        // console.log(responseCourses);
         return responseCourses
     }
     catch{
