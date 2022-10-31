@@ -49,6 +49,7 @@
   display: grid;
   justify-content: center;
   grid-template-rows: 20% 20% 60%;
+  background-color: rgb(226, 226, 226);
 }
 
 .loginTitleLayer {

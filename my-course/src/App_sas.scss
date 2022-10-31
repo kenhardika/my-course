@@ -66,6 +66,7 @@ $Main: #58717b;
     display: grid;
     justify-content: center;
     grid-template-rows: 20% 20% 60%;
+    background-color: $White;
   }
   
   .loginTitleLayer{
@@ -344,7 +345,7 @@ $Main: #58717b;
     height: 80%;
     margin: 0 50px;
     background-color: $Header;
-    
+
     iframe{
         width: 100%;
     }
