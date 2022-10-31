@@ -12,24 +12,14 @@ class DetailCourseClass extends Component {
         this.handlePreviousButton = this.handlePreviousButton.bind(this);
         this.fetchResponseAPI = this.fetchResponseAPI.bind(this);
     }
-
-   async fetchTitle(){
-        const title = await this.state.data.chapters[this.state.chapterIndex].lessons[this.state.lessonIndex].title;
-        // console.log(title);
-        return <p> {title} </p>
-    }
-
     async fetchResponseAPI(course,user){
         try{
-            const responseAPI = await fetchDetailCourse(course, user); // ToDo: async await
+            const responseAPI = await fetchDetailCourse(course, user); 
             const response = responseAPI.data;
-            // console.log(response);
             this.setState({
                 data: response
             })
-            // if(!response.length)return;
         }
-
         catch{
             throw Error('Error API not loaded');
         }
@@ -47,31 +37,26 @@ class DetailCourseClass extends Component {
    
     handleNextButton(e){
         e.preventDefault();
-        const {chapterIndex, lessonIndex} = this.state;
-        if (this.state.data.chapters[chapterIndex].lessons[lessonIndex + 1]){ // check lessons 1
-            // ketika ada chapter & lesson+1
+        const {chapterIndex, lessonIndex, data} = this.state;
+        if (data.chapters[chapterIndex].lessons[lessonIndex + 1]){ 
             this.setState({
                 lessonIndex: lessonIndex + 1
             });
-            console.log(this.state.data.chapters[chapterIndex].lessons[lessonIndex+1].title)
             return
         }
-        else if(!this.state.data.chapters[chapterIndex].lessons[lessonIndex + 1]){
-            if(this.state.data.chapters[chapterIndex + 1]){ // ketika lesson 1 habis cek chapter+1
-                // ketika ada chapter + 1
+        else if(!data.chapters[chapterIndex].lessons[lessonIndex + 1]){
+            if(data.chapters[chapterIndex + 1]){
                 this.setState({
                     chapterIndex: chapterIndex + 1,
                     lessonIndex: 0
                 });
-                console.log(this.state.data.chapters[chapterIndex+1].lessons[0].title)
                 return
             }
-            else if(!this.state.data.chapters[chapterIndex + 1]){
+            else if(!data.chapters[chapterIndex + 1]){
                 this.setState({
                     chapterIndex: 0,
                     lessonIndex: 0
                 });
-                console.log(this.state.data.chapters[0].lessons[0].title)
                 return
             }
         }
@@ -79,53 +64,45 @@ class DetailCourseClass extends Component {
 
     handlePreviousButton(e){
         e.preventDefault();
-        const {chapterIndex, lessonIndex} = this.state;
-        if (this.state.data.chapters[chapterIndex].lessons[lessonIndex - 1]){ // check lessons - 1
-            // ketika ada chapter & lesson-1
+        const {chapterIndex, lessonIndex, data} = this.state;
+        if (data.chapters[chapterIndex].lessons[lessonIndex - 1]){ 
             this.setState({
                 lessonIndex: lessonIndex - 1
             });
             return
         }
-        else if(!this.state.data.chapters[chapterIndex].lessons[lessonIndex - 1]){
-        
-            if(this.state.data.chapters[chapterIndex - 1]){ // ketika lesson 1 habis cek chapter+1
-                // ketika ada chapter + 1
-                console.log('hit chapter - 1');
+        else if(!data.chapters[chapterIndex].lessons[lessonIndex - 1]){
+            if(data.chapters[chapterIndex - 1]){ 
                 this.setState({
                     chapterIndex: chapterIndex - 1,
-                    lessonIndex: this.state.data.chapters[chapterIndex - 1].lessons.length-1
+                    lessonIndex: data.chapters[chapterIndex - 1].lessons.length-1
                 });
                 return
             }
-            else if(!this.state.data.chapters[chapterIndex - 1]){ 
+            else if(!data.chapters[chapterIndex - 1]){ 
                 this.setState({
-                    chapterIndex: this.state.data.chapters.length-1,
-                    lessonIndex: this.state.data.chapters[this.state.data.chapters.length-1].lessons.length-1
+                    chapterIndex: data.chapters.length-1,
+                    lessonIndex: data.chapters[data.chapters.length-1].lessons.length-1
                 });
-                console.log('deadend')
                 return
-                // console.log(this.state.data.chapters[0].lessons[0].title)
             }
         }    
     }
-
     render() {
-        const {chapterIndex, lessonIndex} = this.state;
-        // console.log(this.state.data.chapters)
+        const {chapterIndex, lessonIndex,data} = this.state;
         return (
             <div className='detailCourse'>
             <Header></Header>
             <main className='iframeMain'>
                 {
-                    Object.keys(this.state.data).length? 
-                    <p>{this.state.data.chapters[chapterIndex].lessons[lessonIndex].title}</p> :
+                    Object.keys(data).length? 
+                    <p>{data.chapters[chapterIndex].lessons[lessonIndex].title}</p> :
                     <p>{'loading'}</p>
                 }
 
                 {
-                    Object.keys(this.state.data).length?
-                    <iframe title='videoplayer' src={this.state.data.chapters[chapterIndex].lessons[lessonIndex].link} 
+                    Object.keys(data).length?
+                    <iframe title='videoplayer' src={data.chapters[chapterIndex].lessons[lessonIndex].link} 
                         width={1300} height={500}>
                     </iframe> :
                     <iframe title='videoplayer' src={''} 
@@ -134,18 +111,19 @@ class DetailCourseClass extends Component {
                 }
                 
                 <p>{
-                    Object.keys(this.state.data).length?
-                    this.state.data.chapters[chapterIndex].lessons[lessonIndex].link:'loading'
-                }</p>
+                    Object.keys(data).length?
+                    data.chapters[chapterIndex].lessons[lessonIndex].link:'loading'
+                    }
+                </p>
 
                 <div className="buttonControls">
                     {
-                        Object.keys(this.state.data).length? 
+                        Object.keys(data).length? 
                         <button id='prevBtn' onClick={this.handlePreviousButton}>prev</button>:
                         <button id='prevBtn' >loading</button>
                     }
                     {   
-                        Object.keys(this.state.data).length? 
+                        Object.keys(data).length? 
                         <button id='nextBtn' onClick={this.handleNextButton}>next</button>:
                         <button id='nextBtn' >loading</button>
                     }

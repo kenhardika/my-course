@@ -88,12 +88,11 @@ $Main: #58717b;
     @extend %display-flex-mid;
     font-size: 0.8rem;
     color: $Gray;
-  }
-  
-  .loginBannerLayer p {
-    height: 50px;
-    @extend %display-flex-mid;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.247);
+    p {
+      height: 50px;
+      @extend %display-flex-mid;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.247);
+    }
   }
   
   .formLayer{

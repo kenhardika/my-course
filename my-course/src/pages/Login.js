@@ -38,13 +38,11 @@ class Login extends Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-        // console.log(this.state);
     }
     changeState(key, value){
       this.setState({
         [key]:value
       })
-      console.log(this.state);
     }
 
     handleSubmit = async (e) => {
@@ -52,7 +50,6 @@ class Login extends Component {
       const {history} = this.props
       const responseAPI = await loginAPI(this.state);        
       if (responseAPI.message === 'Success.'){
-          console.log('login success');
           localStorage.setItem("data_user_login", JSON.stringify(this.state));
           history.push(`/mycourse/${responseAPI.data.user_id}`)
       } 
@@ -65,7 +62,6 @@ class Login extends Component {
        
 }
     render() {
-
         return (
           <div className="loginPage">
             <div className="left-section">
@@ -95,7 +91,6 @@ class Login extends Component {
                       id="inputName"
                       placeholder="Masukan Nama Lengkap"
                       name='name'
-                    
                       onChange={(e)=> this.onChangeEvent(e)}
                       required
                     />
@@ -103,34 +98,27 @@ class Login extends Component {
 
                   <div className="inputForm">
                     <label htmlFor="inputText">Email: </label>
-                    {/* onchange nya coba dibikin method done */} 
                     <input
                       type="text"
                       id="inputText"
                       placeholder="Masukan Email"
-                      // ini kasih nama email done
                       name="email"
-                  
                       onChange={(e)=> this.onChangeEvent(e)}
                       required
                     />
                   </div>
                   <div className="inputForm">
                     <label htmlFor="inputPass">Kata Sandi: </label>
-                    {/* onchange nya coba dibikin method done*/}
                     <input
                       type="password"
                       id="inputPass"
                       placeholder="Masukan Kata Sandi"
                       name='password'
-                   
                       onChange={(e)=> this.onChangeEvent(e)}
                       required
                     />
                   </div>
-
                   <a href="/"> lupa kata sandi? </a>
-
                   <div className="layerButton">
                     <button id="submitBtn" type="submit">
                       Masuk

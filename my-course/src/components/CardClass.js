@@ -4,17 +4,6 @@ class CardClass extends Component {
         super(props);
         this.state={ data:[] }
     }
-    
-
-    
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() {
-
-    }
-
     render() {
         const{ data:{
             title, 

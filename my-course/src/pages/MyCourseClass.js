@@ -18,8 +18,6 @@ class MyCourseClass extends Component {
         })
     }
 
-
-
     navigateToDetailCourse(e, courseid, userid){
         e.preventDefault();
         const {history} = this.props;
@@ -43,17 +41,12 @@ class MyCourseClass extends Component {
     
     }
 
-
     componentDidMount() {
         const {match:{params:{id}}} = this.props;
         this.fetchCourseCard(id);
         const localStore = JSON.parse(localStorage.getItem('data_user_login'));
         localStore.user_id = this.props.match.params.id;
         localStorage.setItem("data_user_login", JSON.stringify(localStore));
-    }
-
-    componentWillUnmount() {
-
     }
     
     render() {
@@ -73,6 +66,5 @@ class MyCourseClass extends Component {
         );
     }
 }
-
 
 export default MyCourseClass;
