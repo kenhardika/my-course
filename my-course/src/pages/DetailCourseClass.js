@@ -114,9 +114,9 @@ class DetailCourseClass extends Component {
         const {chapterIndex, lessonIndex} = this.state;
         // console.log(this.state.data.chapters)
         return (
-            <div>
+            <div className='detailCourse'>
             <Header></Header>
-            <main>
+            <main className='iframeMain'>
                 {
                     Object.keys(this.state.data).length? 
                     <p>{this.state.data.chapters[chapterIndex].lessons[lessonIndex].title}</p> :
