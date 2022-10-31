@@ -69,7 +69,7 @@ class MyCourseClass extends Component {
                 <p>Kelas</p> 
                 <div className="content">
                 <div className="cards">
-                    {courses.map((item) => {return <CardClass key={item.course_id} data = {item} nav= {this.navigateToDetailCourse}/>}) }
+                    {courses.map((item) => {return <CardClass key={item.course_id} data = {item} navigateToDetailCourse= {this.navigateToDetailCourse}/>}) }
                 </div>
                 </div>
       </main>

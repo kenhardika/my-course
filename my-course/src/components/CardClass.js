@@ -22,7 +22,7 @@ class CardClass extends Component {
             instructors: {0:{ name, photo }},
             instructor_role,
             course_id
-            }, nav } = this.props;
+            }, navigateToDetailCourse } = this.props;
 
         const user_id = JSON.parse(localStorage.getItem('data_user_login')).user_id;
         return (
@@ -46,7 +46,7 @@ class CardClass extends Component {
                         </div>
                     </div>
                     <div className="layerButton">
-                        <button id='courseBtn' onClick={ (e)=> nav(e, course_id, user_id) }>Lanjut</button>
+                        <button id='courseBtn' onClick={ (e)=> navigateToDetailCourse(e, course_id, user_id) }>Lanjut</button>
                     </div>
             </div>
         </div>
