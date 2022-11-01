@@ -1,0 +1,352 @@
+// Color 
+$White: rgb(226, 226, 226);
+$Orange: #e47909;
+$Gray: rgb(100, 100, 100);
+$Header: #253237;
+$Main: #58717b;
+
+// extend 
+%display-flex-mid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+%height-width-full-view{
+    height: 100vh;
+    width: 100vw;
+}
+
+%height-width-full-percent{
+    height: 100%;
+    width: 100%;
+}
+
+.errorPage{
+    @extend %height-width-full-view;
+    background-color: $Orange;
+    @extend %display-flex-mid;
+}
+
+.loginPage{
+    @extend %height-width-full-view;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-section{
+    @extend %display-flex-mid;
+    width: 100%;
+    background-image: url(./img/building.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.layerText{
+    @extend %display-flex-mid;
+    flex-direction: column;
+    background-color: #0000008c;
+    color: $White;
+    @extend %height-width-full-percent;
+    gap: 10px;
+    p:first-child{
+        font-size: 1.8rem;
+    }
+}
+
+.right-section{
+    @extend %display-flex-mid;
+    @extend %height-width-full-percent;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.right-layer{
+    @extend %height-width-full-percent;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 20% 20% 60%;
+    background-color: $White;
+  }
+  
+  .loginTitleLayer{
+    width: 100%;
+    border-bottom: 1px solid #808080a6;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 2rem;
+    color: $Orange;
+
+    p {
+        border-bottom: 3px solid $Orange;
+
+    }
+  }
+  
+  .loginBannerLayer{
+    @extend %display-flex-mid;
+    font-size: 0.8rem;
+    color: $Gray;
+    p {
+      height: 50px;
+      @extend %display-flex-mid;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.247);
+    }
+  }
+  
+  .formLayer{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    gap: 10px;
+  }
+  
+  .inputForm{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: $Orange;
+    font-size: 0.9rem;
+    gap: 5px;
+  }
+  
+  .inputForm input{
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    box-shadow: .5px .5px 5px .5px gray;
+    outline: none;
+    color: rgb(44, 44, 44);
+    font-size: 1.1rem;
+    padding: 5px;
+  }
+  
+  .inputForm input:focus{
+    border: 1px solid rgb(69, 184, 255);
+  }
+  
+  .formLayer a {
+    font-size: 0.7rem;
+    text-decoration: none;
+    color: $Orange;
+  }
+  
+  .formLayer a:hover{
+    color: #c56b0a;
+  }
+  
+  .layerButton{
+    @extend %display-flex-mid;
+    padding-top: 20px;
+    
+    button{
+        width: 100%;
+        height: 5vh;
+        border-radius: 10px;
+        background-color: $Orange;
+        color: white;
+        border: 0px solid transparent;
+        font-size: 1.3rem;
+      }
+    button:hover{
+        background-color: #ff8400;
+        cursor: pointer;
+    }
+    button:active{
+        transform: translateY(2px);
+    }
+  }
+    
+  footer{
+    position: absolute;
+    top: 98vh;
+    width: 100%;
+    height: 2vh;
+    font-size: 0.8rem;
+    color: $White;
+    background-color: rgba(0, 0, 0, 0.466);
+    
+    p {
+        @extend %display-flex-mid;
+        @extend %height-width-full-percent;
+      }
+      
+}  
+
+  header{
+    display: grid;
+    width: 100%;
+    height: 10vh;
+    color: $White;
+    grid-template-columns: 70% 30%;
+    background-color: $Header;
+  }
+  
+  .logo-layer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5vw;
+    
+    img{
+        width: 200px;
+      }
+ }
+  
+  .profile-layer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  #avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e47909;
+  }
+  
+  body{
+    height: 100vh;
+    background-color: $Main;
+  }
+
+  main{
+    background-color: $Main;
+    height: 80vh;
+    display: flex;
+    padding: 0 50px;
+    flex-direction: column;
+  }
+  
+  main > p:first-child {
+    font-size: 1.5rem;
+  }
+  main > p:nth-child(3){
+    font-size: 0.8rem;
+  }
+  
+  .content{
+    display: flex;
+    @extend %height-width-full-percent;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cards{
+    display: grid;
+    @extend %height-width-full-percent;
+    gap: 20px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 320px));
+    grid-template-rows:repeat(auto-fit, minmax(90%, 100%));
+    background-color: $Header;
+    border-radius: 5px;
+  }
+
+  .card-inside{
+    height: 80%;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  .top-section{
+    height: 50%;
+    @extend %display-flex-mid;
+    background-color: $Orange;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    img{
+        width: 80%;
+        border-radius: 10px;
+      }
+  }
+  .bottom-section{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+  }
+  
+  .title-section{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .instructor-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    gap: 15px;
+    img{
+        width: 50px;
+        border-radius: 50%;
+      }
+  }
+
+  .instructor-role{
+    font-size: 0.8rem;
+  }
+  #courseBtn{
+    color: white;
+    width: 200px;
+    box-shadow: -1px 2px 2px gray;
+  }
+  #courseBtn:active{
+    box-shadow: 0px 0px 3px gray;
+  }
+  
+  .videoCourseLayer{
+    width: 100%;
+    height: 85%;
+    background-color: $Header;
+    border-radius: 10px;
+  }
+  
+  .layerSwitchButton{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+  }
+  .layerVideo{
+    height: 100%;
+  }
+  .layerVideo iframe{
+    @extend %height-width-full-percent;
+  }
+  
+  .buttonControls{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    button{
+        width: 200px;
+        height: 30px;
+      }
+  }
+
+  .detailCourse{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .iframeMain{
+    display: flex;
+    height: 80%;
+    margin: 0 50px;
+    background-color: $Header;
+
+    iframe{
+        width: 100%;
+    }
+
+  }

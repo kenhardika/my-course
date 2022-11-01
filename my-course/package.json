@@ -1,5 +1,5 @@
 {
-  "homepage": "https://kenhardika.github.io/my-course",
+  "homepage": "https://kenhardika.github.io/",
   "name": "my-course",
   "version": "0.1.0",
   "private": true,
@@ -10,7 +10,7 @@
     "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2",
+    "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -41,6 +41,8 @@
     ]
   },
   "devDependencies": {
+    "json-server": "^0.17.0",
+    "sass": "^1.55.0",
     "video.js": "^7.20.3"
   }
 }

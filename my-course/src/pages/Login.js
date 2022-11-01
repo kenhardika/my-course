@@ -16,10 +16,13 @@ async function loginAPI(data){
         mode: 'cors', 
         credentials: 'include',
         body: formBody,
-    }).then((response) => response.json()).catch((reject)=> console.log(reject));
+      }).then((response) =>
+       response.json()
+      ).catch((reject)=>
+      console.log(reject)
+      );
 }
-
-class login extends Component {
+class Login extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -30,92 +33,103 @@ class login extends Component {
             user_id:'', 
         }
     }
-    
-    render() {
+    onChangeEvent(e){
+      e.preventDefault();
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+    changeState(key, value){
+      this.setState({
+        [key]:value
+      })
+    }
 
-        const handleSubmit = async e => {
-            e.preventDefault();
-            const responseAPI = await loginAPI(this.state);        
-            // console.log(responseAPI);
-            if (responseAPI.message === 'Success.'){
-                // console.log(responseAPI.data.user_id);
-                
-                console.log('login success');
-                localStorage.setItem("data_user_login", JSON.stringify(this.state));
-                window.location.href = `/mycourse/${responseAPI.data.user_id}`; // ${}
-            } 
-            else{
-                this.setState({
-                    errorLogin: true
-                });
-                console.log('login failed');
-                return 
-            } 
-        }
-        
-        if (this.state.errorLogin === true){
-            this.setState({
-                errorLogin: false
-            });
-            window.location.href = `/`; // ${}
-            alert('Error: Login Failed');
-            return 
-        }
-        
+    handleSubmit = async (e) => {
+      e.preventDefault();
+      const {history} = this.props
+      const responseAPI = await loginAPI(this.state);        
+      if (responseAPI.message === 'Success.'){
+          localStorage.setItem("data_user_login", JSON.stringify(this.state));
+          history.push(`/mycourse/${responseAPI.data.user_id}`)
+      } 
+      else if(responseAPI.message !== 'Success.'){
+        this.setState({
+            errorLogin: true
+        });
+        console.log('Error: login failed, API fetch failed');
+      }
+       
+}
+    render() {
         return (
-            <div className='loginPage'>
-                <div className="left-section">
-                    <div className="layerText">
-                        <p> KOMUNITAS MEA </p>
-                        <p> Komunitas Jago Jualan Online </p>
-                    </div>
-                </div>
-                <div className="right-section">
-                    <div className="right-layer">
-                            <div className="loginTitleLayer">
-                                <p>MASUK</p>  
-                            </div>
-                            <div className="loginBannerLayer">
-                                <p>Silakan Masuk ke akun Komunitas MEA kamu!</p>
-                            </div>
-                            <form className='formLayer' method="post" action='/' onSubmit={ handleSubmit }>
-                                <div className="inputForm">
-                                    <label htmlFor="inputName">Nama Lengkap: </label>
-                                    <input type="text" id="inputName" placeholder='Masukan Nama Lengkap' onChange={(e)=>{
-                                        this.setState({
-                                            name: e.target.value
-                                        })
-                                    }} required/>
-                                </div>
-                                
-                                <div className="inputForm">
-                                    <label htmlFor="inputText">Email: </label>
-                                    <input type="text" id="inputText" placeholder='Masukan Email' onChange={(e)=>{ 
-                                        this.setState({
-                                            email: e.target.value
-                                        })
-                                    }} required/>
-                                </div>
-                                <div className="inputForm">
-                                    <label htmlFor="inputPass">Kata Sandi: </label>
-                                    <input type="password" id="inputPass" placeholder='Masukan Kata Sandi' onChange={(e)=>{ 
-                                        this.setState({
-                                            password: e.target.value
-                                        })
-                                    }} required/>
-                                </div>
-                                
-                                <a href='/'> lupa kata sandi? </a>
-                                
-                                <div className="layerButton">
-                                    <button id='submitBtn' type='submit' > Masuk </button>    
-                                </div>
-                                <div className='errorLayer'></div>
-                            </form>
-                    </div>
-                </div> 
+          <div className="loginPage">
+            <div className="left-section">
+              <div className="layerText">
+                <p> KOMUNITAS MEA </p>
+                <p> Komunitas Jago Jualan Online </p>
+              </div>
             </div>
+            <div className="right-section">
+              <div className="right-layer">
+                <div className="loginTitleLayer">
+                  <p>MASUK</p>
+                </div>
+                <div className="loginBannerLayer">
+                  <p>Silakan Masuk ke akun Komunitas MEA kamu!</p>
+                </div>
+                <form
+                  className="formLayer"
+                  method="post"
+                  action="/"
+                  onSubmit={this.handleSubmit}
+                >
+                  <div className="inputForm">
+                    <label htmlFor="inputName">Nama Lengkap: </label>
+                    <input
+                      type="text"
+                      id="inputName"
+                      placeholder="Masukan Nama Lengkap"
+                      name='name'
+                      onChange={(e)=> this.onChangeEvent(e)}
+                      required
+                    />
+                  </div>
+
+                  <div className="inputForm">
+                    <label htmlFor="inputText">Email: </label>
+                    <input
+                      type="text"
+                      id="inputText"
+                      placeholder="Masukan Email"
+                      name="email"
+                      onChange={(e)=> this.onChangeEvent(e)}
+                      required
+                    />
+                  </div>
+                  <div className="inputForm">
+                    <label htmlFor="inputPass">Kata Sandi: </label>
+                    <input
+                      type="password"
+                      id="inputPass"
+                      placeholder="Masukan Kata Sandi"
+                      name='password'
+                      onChange={(e)=> this.onChangeEvent(e)}
+                      required
+                    />
+                  </div>
+                  <a href="/"> lupa kata sandi? </a>
+                  <div className="layerButton">
+                    <button id="submitBtn" type="submit">
+                      Masuk
+                    </button>
+                  </div>
+                  <div className="errorLayer"></div>
+                </form>
+              </div>
+            </div>
+          </div>
         );
     }
 }
-export default login;       
+export default Login;       
